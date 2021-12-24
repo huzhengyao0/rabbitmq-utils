@@ -1,7 +1,8 @@
-package main
+package utils
 
 import (
 	"fmt"
+	"github.com/huzhengyao0/rabbitmq-utils/service"
 	"os"
 )
 
@@ -10,7 +11,7 @@ func main() {
 	queueName := "e.text"
 	prefetchCount := 30 // 每次拉取数量
 	goCount := 10  // 协程数量 暂未使用
-	consumer, err := InitConsumer(ampqUrl, queueName, prefetchCount, goCount, nil, worker)
+	consumer, err := service.InitConsumer(ampqUrl, queueName, prefetchCount, goCount, nil, worker)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
@@ -20,5 +21,5 @@ func main() {
 
 func worker(msg string) int{
 	fmt.Println(msg)
-	return CONSUME_SUCCESS
+	return service.CONSUME_SUCCESS
 }

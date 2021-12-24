@@ -1,7 +1,8 @@
-package main
+package utils
 
 import (
 	"fmt"
+	"github.com/huzhengyao0/rabbitmq-utils/service"
 	"os"
 	"time"
 )
@@ -14,7 +15,7 @@ func main() {
 	vHost := "test"
 	timeout := 30 * time.Second
 	message := "{\"name\":\"aa\"}"
-	rabbitMQReceive, err := InitReceive(ampqUrl, exchange, exchangeType, routingKey, vHost, timeout)
+	rabbitMQReceive, err := service.InitReceive(ampqUrl, exchange, exchangeType, routingKey, vHost, timeout)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
